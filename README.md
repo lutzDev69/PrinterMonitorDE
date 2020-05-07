@@ -24,7 +24,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-# Printer Monitor (OctoPrint 3D Printer Monitor)
+# Printer Monitor DE (OctoPrint 3D Printer Monitor)
 
 ## Features:
 * Displays the print status from OctoPrint Server
