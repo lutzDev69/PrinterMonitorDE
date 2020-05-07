@@ -982,7 +982,7 @@ void drawWeather(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int
   if (weatherClient.getCloudiness(0).toInt() > 84 )
   {
     display->setColor(BLACK);
-    display->setFont((const uint8_t*)Open_Sans_Bold_10);
+    display->setFont((const uint8_t*)SansSerif_bold_10);
     String displayCloudiness = weatherClient.getCloudiness(0) + "%";
     display->drawString(100 + x, 18 + y, displayCloudiness);
   }
