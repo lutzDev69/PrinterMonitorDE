@@ -1366,11 +1366,11 @@ String getTranslate() {
     if (weatherClient.getCondition(0) == "Clear") {
     rtnValue = "Klar";
     } else if (weatherClient.getCondition(0) == "Clouds" && (weatherClient.getWeatherId(0) == "801" || weatherClient.getWeatherId(0) == "802")) {
-    rtnValue = "wolkig";
+    rtnValue = "Wolkig";
     } else if (weatherClient.getCondition(0) == "Clouds" && weatherClient.getWeatherId(0) == "803") {
-    rtnValue = "bewölkt";
+    rtnValue = "Bewölkt";
     } else if (weatherClient.getCondition(0) == "Clouds" && weatherClient.getWeatherId(0) == "804") {
-    rtnValue = "bedeckt";
+    rtnValue = "Bedeckt";
     } else if (weatherClient.getCondition(0) == "Rain") {
     rtnValue = "Regen";
     } else if (weatherClient.getCondition(0) == "Snow") {
