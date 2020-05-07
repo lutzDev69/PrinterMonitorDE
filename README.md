@@ -1,5 +1,5 @@
 # PrinterMonitorDE
-Clone of PrinterMonitor by <a href="https://github.com/Qrome" target="_blank">Qrome</a>
+Clone of Printer-Monitor by <a href="https://github.com/Qrome" target="_blank">Qrome</a>
 
 /* The MIT License (MIT)
 
