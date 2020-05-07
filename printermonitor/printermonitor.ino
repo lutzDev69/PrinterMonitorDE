@@ -904,8 +904,8 @@ void drawScreen1(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int
   display->setFont(ArialMT_Plain_24);
   if (bed != "0") {
     display->setTextAlignment(TEXT_ALIGN_LEFT);
-    display->drawString(2 + x, 14 + y, bed + "°");
-    display->drawString(64 + x, 14 + y, tool + "°");
+    display->drawString(10 + x, 14 + y, bed + "°");
+    display->drawString(72 + x, 14 + y, tool + "°");
   } else {
     display->setTextAlignment(TEXT_ALIGN_CENTER);
     display->drawString(64 + x, 14 + y, tool + "°");
@@ -929,11 +929,7 @@ void drawScreen2(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int
   {
     String time = "unter einer Minute :-)";
   }
-
-  if (hours == 0 && minutes == 0 && seconds == 0)
-  {
-    String time = "Beendet :-)";
-  }
+  
   display->drawString(64 + x, 14 + y, time);
 }
 
