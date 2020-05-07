@@ -23,6 +23,7 @@ SOFTWARE.
 
 // Additional Contributions:
 /* 15 Jan 2019 : Owen Carter : Add psucontrol option and processing */
+/* 07 May 2020 : Lutz Hasberg: Fork of version 2.5, translated to german */
 
  /**********************************************
  * Edit Settings.h for personalization
@@ -31,7 +32,7 @@ SOFTWARE.
 #include "Settings.h"
 
 
-#define VERSION "2.5"
+#define VERSION "1.0"
 
 #define HOSTNAME "OctMon-" 
 #define CONFIG "/conf.txt"
