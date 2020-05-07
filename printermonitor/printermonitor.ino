@@ -23,7 +23,7 @@ SOFTWARE.
 
 // Additional Contributions:
 /* 15 Jan 2019 : Owen Carter : Add psucontrol option and processing */
-/* 07 May 2020 : Lutz Hasberg: Fork of version 2.5, translated to german */
+/* 07 May 2020 : Lutz Hasberg: Clone of version 2.5, translated to german */
 
  /**********************************************
  * Edit Settings.h for personalization
@@ -987,15 +987,24 @@ void drawWeather(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int
 
   display->setFont(ArialMT_Plain_16);
   display->drawString(0 + x, 24 + y, getTranslate());
+  display->setFont((const uint8_t*)Meteocons_Plain_42);
+  display->drawString(86 + x, 0 + y, weatherClient.getWeatherIcon(0));
   
-  if (weatherClient.getCloudiness(0).toInt() > 10)
+  if (weatherClient.getCloudiness(0).toInt() > 10 && weatherClient.getCloudiness(0).toInt() < 85 )
   {
     display->setFont(ArialMT_Plain_10);
     String displayCloudiness = weatherClient.getCloudiness(0) + "%";
     display->drawString(100 + x, 22 + y, displayCloudiness);
   }
-  display->setFont((const uint8_t*)Meteocons_Plain_42);
-  display->drawString(86 + x, 0 + y, weatherClient.getWeatherIcon(0));
+
+  if (weatherClient.getCloudiness(0).toInt() > 84 )
+  {
+    display->setColor(BLACK);
+    display->setFont(ArialMT_Plain_10);
+    String displayCloudiness = weatherClient.getCloudiness(0) + "%";
+    display->drawString(95 + x, 22 + y, displayCloudiness);
+  }
+  
 }
 
 String getTempSymbol() {
