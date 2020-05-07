@@ -418,24 +418,6 @@ void getUpdateTime() {
   digitalWrite(externalLight, HIGH);  // turn off the LED
 }
 
-void getUpdateTime_2() {
-  digitalWrite(externalLight, LOW); // turn on the LED
-  Serial.println();
-
-  if (displayOn && DISPLAYWEATHER) {
-    Serial.println("Getting Weather Data...");
-    weatherClient.updateWeather();
-  }
-
-  Serial.println("Updating Time...");
-  //Update the Time
-  timeClient.updateTime();
-  lastEpoch = timeClient.getCurrentEpoch();
-  Serial.println("Local time: " + timeClient.getAmPmFormattedTime());
-
-  digitalWrite(externalLight, HIGH);  // turn off the LED
-}
-
 boolean authentication() {
   if (IS_BASIC_AUTH && (strlen(www_username) >= 1 && strlen(www_password) >= 1)) {
     return server.authenticate(www_username, www_password);
@@ -1000,9 +982,9 @@ void drawWeather(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int
   if (weatherClient.getCloudiness(0).toInt() > 84 )
   {
     display->setColor(BLACK);
-    display->setFont(ArialMT_Plain_10);
+    display->setFont((const uint8_t*)Open_Sans_Bold_10);
     String displayCloudiness = weatherClient.getCloudiness(0) + "%";
-    display->drawString(95 + x, 20 + y, displayCloudiness);
+    display->drawString(100 + x, 18 + y, displayCloudiness);
   }
   
 }
