@@ -105,22 +105,22 @@ String WEB_ACTIONS =  "<a class='w3-bar-item w3-button' href='/'><i class='fa fa
                       "<a class='w3-bar-item w3-button' href='/configureweather'><i class='fa fa-cloud'></i> Wetter</a>"
                       "<a class='w3-bar-item w3-button' href='/systemreset' onclick='return confirm(\"Möchtest Du die Standardeinstellungen wiederherstellen?\")'><i class='fa fa-undo'></i> Werkseinstellung</a>"
                       "<a class='w3-bar-item w3-button' href='/forgetwifi' onclick='return confirm(\"Möchtest Du die WiFi-Verbindung vergessen?\")'><i class='fa fa-wifi'></i> WiFi zurücksetzen</a>"
-                      "<a class='w3-bar-item w3-button' href='/update'><i class='fa fa-wrench'></i> Firmware Updaten</a>"
+                      "<a class='w3-bar-item w3-button' href='/update'><i class='fa fa-wrench'></i> Firmware Update</a>"
                       "<a class='w3-bar-item w3-button' href='https://github.com/Qrome' target='_blank'><i class='fa fa-question-circle'></i> About</a>";
                             
 String CHANGE_FORM =  "<form class='w3-container' action='/updateconfig' method='get'><h2>Station Config:</h2>"
-                      "<p><label>OctoPrint API Key (get from your server)</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='octoPrintApiKey' value='%OCTOKEY%' maxlength='60'></p>"
-                      "<p><label>OctoPrint Host Name (default octopi)</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='octoPrintHostName' value='%OCTOHOST%' maxlength='60'></p>"
+                      "<p><label>OctoPrint API Key (von deinem Server)</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='octoPrintApiKey' value='%OCTOKEY%' maxlength='60'></p>"
+                      "<p><label>OctoPrint Host Name (Standard ist octopi)</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='octoPrintHostName' value='%OCTOHOST%' maxlength='60'></p>"
                       "<p><label>OctoPrint Addresse (ohne http://)</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='octoPrintAddress' value='%OCTOADDRESS%' maxlength='60'></p>"
                       "<p><label>OctoPrint Port</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='octoPrintPort' value='%OCTOPORT%' maxlength='5'  onkeypress='return isNumberKey(event)'></p>"
-                      "<p><label>OctoPrint User (only needed if you have haproxy or basic auth turned on)</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='octoUser' value='%OCTOUSER%' maxlength='30'></p>"
+                      "<p><label>OctoPrint User (wird nur gebraucht mit einem haproxy oder basic auth ist aktiviert)</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='octoUser' value='%OCTOUSER%' maxlength='30'></p>"
                       "<p><label>OctoPrint Passwort </label><input class='w3-input w3-border w3-margin-bottom' type='password' name='octoPass' value='%OCTOPASS%'></p><hr>"
                       "<p><label>Drucker Model</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='printerModel' value='%PRINTERMODEL%' maxlength='60'></p>"
-                      "<p><input name='isClockEnabled' class='w3-check w3-margin-top' type='checkbox' %IS_CLOCK_CHECKED%> Display Clock when printer is off</p>"
-                      "<p><input name='is24hour' class='w3-check w3-margin-top' type='checkbox' %IS_24HOUR_CHECKED%> Use 24 Hour Clock (military time)</p>"
-                      "<p><input name='invDisp' class='w3-check w3-margin-top' type='checkbox' %IS_INVDISP_CHECKED%> Flip display orientation</p>"
-                      "<p><input name='hasPSU' class='w3-check w3-margin-top' type='checkbox' %HAS_PSU_CHECKED%> Use OctoPrint PSU control plugin for clock/blank</p>"
-                      "<p>Clock Sync / Weather Refresh (minutes) <select class='w3-option w3-padding' name='refresh'>%OPTIONS%</select></p>";
+                      "<p><input name='isClockEnabled' class='w3-check w3-margin-top' type='checkbox' %IS_CLOCK_CHECKED%> Zeige Uhr wenn Drucker aus ist</p>"
+                      "<p><input name='is24hour' class='w3-check w3-margin-top' type='checkbox' %IS_24HOUR_CHECKED%>&nbsp;24 Stunden Format (hh:mm)</p>"
+                      "<p><input name='invDisp' class='w3-check w3-margin-top' type='checkbox' %IS_INVDISP_CHECKED%> Displayausrichtung umdrehen</p>"
+                      "<p><input name='hasPSU' class='w3-check w3-margin-top' type='checkbox' %HAS_PSU_CHECKED%> Nutze OctoPrint PSU control plugin für Uhr/Leerer Bildschirm</p>"
+                      "<p>Uhr / Wetter Sync (Minuten) <select class='w3-option w3-padding' name='refresh'>%OPTIONS%</select></p>";
                       
 String THEME_FORM =   "<p>Theme Farbe <select class='w3-option w3-padding' name='theme'>%THEME_OPTIONS%</select></p>"
                       "<p><label>UTC-Zeitversatz</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='utcoffset' value='%UTCOFFSET%' maxlength='12'></p><hr>"
@@ -224,7 +224,7 @@ void setup() {
   display.setFont(ArialMT_Plain_16);
   display.setTextAlignment(TEXT_ALIGN_CENTER);
   display.setContrast(255); // default is 255
-  display.drawString(64, 5, "Drucker Monitor\nvon Qrome\nV" + String(VERSION));
+  display.drawString(64, 5, "Drucker Monitor\nvon lutzDev69\nV" + String(VERSION));
   display.display();
 
   //WiFiManager
@@ -834,7 +834,7 @@ void displayPrinterStatus() {
     if (weatherClient.getCity(0) == "") {
       html += "<p>Bitte <a href='/configureweather'>konfiguriere deine Wetter</a> API</p>";
       if (weatherClient.getError() != "") {
-        html += "<p>Weather Error: <strong>" + weatherClient.getError() + "</strong></p>";
+        html += "<p>Wetter Fehler: <strong>" + weatherClient.getError() + "</strong></p>";
       }
     } else {
       html += "<div class='w3-cell-row' style='width:100%'><h2>" + weatherClient.getCity(0) + ", " + weatherClient.getTempRounded(0) + getTempSymbol(true) +"</h2></div><div class='w3-cell-row'>";
