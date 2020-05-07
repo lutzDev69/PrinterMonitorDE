@@ -838,9 +838,9 @@ void displayPrinterStatus() {
       }
     } else {
       html += "<div class='w3-cell-row' style='width:100%'><h2>" + weatherClient.getCity(0) + ", " + weatherClient.getTempRounded(0) + getTempSymbol(true) +"</h2></div><div class='w3-cell-row'>";
-      html += "<div class='w3-cell w3-left' style='width:200px'>";
+      html += "<div class='w3-cell w3-left' style='width:300px'>";
       html += "<img src='http://openweathermap.org/img/wn/" + weatherClient.getIcon(0) + ".png' alt='" + weatherClient.getDescription(0) + "'><span class='w3-large'>" +getTranslate() +"</span><br>";
-      html += weatherClient.getDescription(0) + "<br>";
+      html += weatherClient.getDescription(0) + "(" + weatherClient.getCloudiness(0) + "%)<br>";
       html += "<span class='w3-medium'>" + weatherClient.getHumidity(0) + "% Luftfeuchtigkeit</span><br>";
       html += "<span class='w3-medium'>" + weatherClient.getWind(0) + "&nbsp;</span><span class='w3-tiny'>" + getSpeedSymbol() + "</span><span class='w3-medium'> Windstärke</span><br>";
       html += "<a class='w3-medium' href='https://www.google.com/maps/@" + weatherClient.getLat(0) + "," + weatherClient.getLon(0) + ",10000m/data=' target='_BLANK'><i class='fa fa-map-marker' style='color:red'></i> Karte!</a><br>";
@@ -979,6 +979,13 @@ void drawWeather(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int
 
   display->setFont(ArialMT_Plain_16);
   display->drawString(0 + x, 24 + y, getTranslate());
+  
+  if (weatherClient.getCloudiness(0).toInt() > 10)
+  {
+    display->setFont(ArialMT_Plain_10);
+    String displayCloudiness = weatherClient.getCloudiness(0) + "%";
+    display->drawString(100 + x, 22 + y, displayCloudiness);
+  }
   display->setFont((const uint8_t*)Meteocons_Plain_42);
   display->drawString(86 + x, 0 + y, weatherClient.getWeatherIcon(0));
 }
@@ -1341,8 +1348,10 @@ String getTranslate() {
   if (WeatherLanguage == "de") {  //If Language set to German
     if (weatherClient.getCondition(0) == "Clear") {
     rtnValue = "Klar";
-    } else if (weatherClient.getCondition(0) == "Clouds") {
-    rtnValue = "Wolken";
+    } else if (weatherClient.getCondition(0) == "Clouds" && (weatherClient.getWeatherId(0) == "801" || weatherClient.getWeatherId(0) == "802")) {
+    rtnValue = "wolkig";
+    } else if (weatherClient.getCondition(0) == "Clouds" && (weatherClient.getWeatherId(0) == "803" || weatherClient.getWeatherId(0) == "804")) {
+    rtnValue = "bewölkt";
     } else if (weatherClient.getCondition(0) == "Rain") {
     rtnValue = "Regen";
     } else if (weatherClient.getCondition(0) == "Snow") {
