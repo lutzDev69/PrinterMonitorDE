@@ -23,6 +23,7 @@ SOFTWARE.
 
 // Additional Contributions:
 /* 15 Jan 2019 : Owen Carter : Add psucontrol option and processing */
+/* 07 May 2020 : Lutz Hasberg: Clone of version 2.5, translated to german */
 
  /**********************************************
  * Edit Settings.h for personalization
@@ -31,7 +32,7 @@ SOFTWARE.
 #include "Settings.h"
 
 
-#define VERSION "2.5"
+#define VERSION "1.0"
 
 #define HOSTNAME "OctMon-" 
 #define CONFIG "/conf.txt"
@@ -104,22 +105,22 @@ String WEB_ACTIONS =  "<a class='w3-bar-item w3-button' href='/'><i class='fa fa
                       "<a class='w3-bar-item w3-button' href='/configureweather'><i class='fa fa-cloud'></i> Wetter</a>"
                       "<a class='w3-bar-item w3-button' href='/systemreset' onclick='return confirm(\"Möchtest Du die Standardeinstellungen wiederherstellen?\")'><i class='fa fa-undo'></i> Werkseinstellung</a>"
                       "<a class='w3-bar-item w3-button' href='/forgetwifi' onclick='return confirm(\"Möchtest Du die WiFi-Verbindung vergessen?\")'><i class='fa fa-wifi'></i> WiFi zurücksetzen</a>"
-                      "<a class='w3-bar-item w3-button' href='/update'><i class='fa fa-wrench'></i> Firmware Updaten</a>"
+                      "<a class='w3-bar-item w3-button' href='/update'><i class='fa fa-wrench'></i> Firmware Update</a>"
                       "<a class='w3-bar-item w3-button' href='https://github.com/Qrome' target='_blank'><i class='fa fa-question-circle'></i> About</a>";
                             
 String CHANGE_FORM =  "<form class='w3-container' action='/updateconfig' method='get'><h2>Station Config:</h2>"
-                      "<p><label>OctoPrint API Key (get from your server)</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='octoPrintApiKey' value='%OCTOKEY%' maxlength='60'></p>"
-                      "<p><label>OctoPrint Host Name (default octopi)</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='octoPrintHostName' value='%OCTOHOST%' maxlength='60'></p>"
+                      "<p><label>OctoPrint API Key (von deinem Server)</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='octoPrintApiKey' value='%OCTOKEY%' maxlength='60'></p>"
+                      "<p><label>OctoPrint Host Name (Standard ist octopi)</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='octoPrintHostName' value='%OCTOHOST%' maxlength='60'></p>"
                       "<p><label>OctoPrint Addresse (ohne http://)</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='octoPrintAddress' value='%OCTOADDRESS%' maxlength='60'></p>"
                       "<p><label>OctoPrint Port</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='octoPrintPort' value='%OCTOPORT%' maxlength='5'  onkeypress='return isNumberKey(event)'></p>"
-                      "<p><label>OctoPrint User (only needed if you have haproxy or basic auth turned on)</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='octoUser' value='%OCTOUSER%' maxlength='30'></p>"
+                      "<p><label>OctoPrint User (wird nur gebraucht mit einem haproxy oder basic auth ist aktiviert)</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='octoUser' value='%OCTOUSER%' maxlength='30'></p>"
                       "<p><label>OctoPrint Passwort </label><input class='w3-input w3-border w3-margin-bottom' type='password' name='octoPass' value='%OCTOPASS%'></p><hr>"
                       "<p><label>Drucker Model</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='printerModel' value='%PRINTERMODEL%' maxlength='60'></p>"
-                      "<p><input name='isClockEnabled' class='w3-check w3-margin-top' type='checkbox' %IS_CLOCK_CHECKED%> Display Clock when printer is off</p>"
-                      "<p><input name='is24hour' class='w3-check w3-margin-top' type='checkbox' %IS_24HOUR_CHECKED%> Use 24 Hour Clock (military time)</p>"
-                      "<p><input name='invDisp' class='w3-check w3-margin-top' type='checkbox' %IS_INVDISP_CHECKED%> Flip display orientation</p>"
-                      "<p><input name='hasPSU' class='w3-check w3-margin-top' type='checkbox' %HAS_PSU_CHECKED%> Use OctoPrint PSU control plugin for clock/blank</p>"
-                      "<p>Clock Sync / Weather Refresh (minutes) <select class='w3-option w3-padding' name='refresh'>%OPTIONS%</select></p>";
+                      "<p><input name='isClockEnabled' class='w3-check w3-margin-top' type='checkbox' %IS_CLOCK_CHECKED%> Zeige Uhr wenn Drucker aus ist</p>"
+                      "<p><input name='is24hour' class='w3-check w3-margin-top' type='checkbox' %IS_24HOUR_CHECKED%>&nbsp;24 Stunden Format (hh:mm)</p>"
+                      "<p><input name='invDisp' class='w3-check w3-margin-top' type='checkbox' %IS_INVDISP_CHECKED%> Displayausrichtung umdrehen</p>"
+                      "<p><input name='hasPSU' class='w3-check w3-margin-top' type='checkbox' %HAS_PSU_CHECKED%> Nutze OctoPrint PSU control plugin für Uhr/Leerer Bildschirm</p>"
+                      "<p>Uhr / Wetter Sync (Minuten) <select class='w3-option w3-padding' name='refresh'>%OPTIONS%</select></p>";
                       
 String THEME_FORM =   "<p>Theme Farbe <select class='w3-option w3-padding' name='theme'>%THEME_OPTIONS%</select></p>"
                       "<p><label>UTC-Zeitversatz</label><input class='w3-input w3-border w3-margin-bottom' type='text' name='utcoffset' value='%UTCOFFSET%' maxlength='12'></p><hr>"
@@ -223,7 +224,7 @@ void setup() {
   display.setFont(ArialMT_Plain_16);
   display.setTextAlignment(TEXT_ALIGN_CENTER);
   display.setContrast(255); // default is 255
-  display.drawString(64, 5, "Drucker Monitor\nvon Qrome\nV" + String(VERSION));
+  display.drawString(64, 5, "Drucker Monitor\nvon lutzDev69\nV" + String(VERSION));
   display.display();
 
   //WiFiManager
@@ -400,24 +401,6 @@ void loop() {
 }
 
 void getUpdateTime() {
-  digitalWrite(externalLight, LOW); // turn on the LED
-  Serial.println();
-
-  if (displayOn && DISPLAYWEATHER) {
-    Serial.println("Getting Weather Data...");
-    weatherClient.updateWeather();
-  }
-
-  Serial.println("Updating Time...");
-  //Update the Time
-  timeClient.updateTime();
-  lastEpoch = timeClient.getCurrentEpoch();
-  Serial.println("Local time: " + timeClient.getAmPmFormattedTime());
-
-  digitalWrite(externalLight, HIGH);  // turn off the LED
-}
-
-void getUpdateTime_2() {
   digitalWrite(externalLight, LOW); // turn on the LED
   Serial.println();
 
@@ -833,16 +816,24 @@ void displayPrinterStatus() {
     if (weatherClient.getCity(0) == "") {
       html += "<p>Bitte <a href='/configureweather'>konfiguriere deine Wetter</a> API</p>";
       if (weatherClient.getError() != "") {
-        html += "<p>Weather Error: <strong>" + weatherClient.getError() + "</strong></p>";
+        html += "<p>Wetter Fehler: <strong>" + weatherClient.getError() + "</strong></p>";
       }
     } else {
       html += "<div class='w3-cell-row' style='width:100%'><h2>" + weatherClient.getCity(0) + ", " + weatherClient.getTempRounded(0) + getTempSymbol(true) +"</h2></div><div class='w3-cell-row'>";
-      html += "<div class='w3-cell w3-left' style='width:200px'>";
-      html += "<img src='http://openweathermap.org/img/wn/" + weatherClient.getIcon(0) + ".png' alt='" + weatherClient.getDescription(0) + "'><span class='w3-large'>" +getTranslate() +"</span><br>";
-      html += weatherClient.getDescription(0) + "<br>";
-      html += "<span class='w3-medium'>" + weatherClient.getHumidity(0) + "% Luftfeuchtigkeit</span><br>";
-      html += "<span class='w3-medium'>" + weatherClient.getWind(0) + "&nbsp;</span><span class='w3-tiny'>" + getSpeedSymbol() + "</span><span class='w3-medium'> Windstärke</span><br>";
-      html += "<a class='w3-medium' href='https://www.google.com/maps/@" + weatherClient.getLat(0) + "," + weatherClient.getLon(0) + ",10000m/data=' target='_BLANK'><i class='fa fa-map-marker' style='color:red'></i> Karte!</a><br>";
+      html += "<div class='w3-cell w3-left' style='width:300px'>";
+      html += "<img src='http://openweathermap.org/img/wn/" + weatherClient.getIcon(0) + ".png' alt='" + weatherClient.getDescription(0) + "'><span class='w3-large'>" +getTranslate() +"</span><br />";
+      
+      if (weatherClient.getCloudiness(0).toInt() > 10)
+      {
+        html += weatherClient.getDescription(0) + " (" + weatherClient.getCloudiness(0) + "%)<br />";
+      } else 
+      {
+        html += weatherClient.getDescription(0) + "<br />";
+      }
+      
+      html += "<span class='w3-medium'>" + weatherClient.getHumidity(0) + "% Luftfeuchtigkeit</span><br />";
+      html += "<span class='w3-medium'>" + weatherClient.getWind(0) + "&nbsp;</span><span class='w3-tiny'>" + getSpeedSymbol() + "</span><span class='w3-medium'> Windstärke</span><br />";
+      html += "<a class='w3-medium' href='https://www.google.com/maps/@" + weatherClient.getLat(0) + "," + weatherClient.getLon(0) + ",10000m/data=' target='_BLANK'><i class='fa fa-map-marker' style='color:red'></i> Karte!</a><br />";
       html += "</div>";
       html += "</div>";
     }
@@ -903,8 +894,8 @@ void drawScreen1(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int
   display->setFont(ArialMT_Plain_24);
   if (bed != "0") {
     display->setTextAlignment(TEXT_ALIGN_LEFT);
-    display->drawString(2 + x, 14 + y, bed + "°");
-    display->drawString(64 + x, 14 + y, tool + "°");
+    display->drawString(10 + x, 14 + y, bed + "°");
+    display->drawString(72 + x, 14 + y, tool + "°");
   } else {
     display->setTextAlignment(TEXT_ALIGN_CENTER);
     display->drawString(64 + x, 14 + y, tool + "°");
@@ -928,11 +919,7 @@ void drawScreen2(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int
   {
     String time = "unter einer Minute :-)";
   }
-
-  if (hours == 0 && minutes == 0 && seconds == 0)
-  {
-    String time = "Beendet :-)";
-  }
+  
   display->drawString(64 + x, 14 + y, time);
 }
 
@@ -984,6 +971,22 @@ void drawWeather(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int
   display->drawString(0 + x, 24 + y, getTranslate());
   display->setFont((const uint8_t*)Meteocons_Plain_42);
   display->drawString(86 + x, 0 + y, weatherClient.getWeatherIcon(0));
+  
+  if (weatherClient.getCloudiness(0).toInt() > 10 && weatherClient.getCloudiness(0).toInt() < 85 )
+  {
+    display->setFont(ArialMT_Plain_10);
+    String displayCloudiness = weatherClient.getCloudiness(0) + "%";
+    display->drawString(100 + x, 22 + y, displayCloudiness);
+  }
+
+  if (weatherClient.getCloudiness(0).toInt() > 84 )
+  {
+    display->setColor(BLACK);
+    display->setFont((const uint8_t*)Open_Sans_Bold_10);
+    String displayCloudiness = weatherClient.getCloudiness(0) + "%";
+    display->drawString(100 + x, 18 + y, displayCloudiness);
+  }
+  
 }
 
 String getTempSymbol() {
@@ -1344,8 +1347,12 @@ String getTranslate() {
   if (WeatherLanguage == "de") {  //If Language set to German
     if (weatherClient.getCondition(0) == "Clear") {
     rtnValue = "Klar";
-    } else if (weatherClient.getCondition(0) == "Clouds") {
-    rtnValue = "Wolken";
+    } else if (weatherClient.getCondition(0) == "Clouds" && (weatherClient.getWeatherId(0) == "801" || weatherClient.getWeatherId(0) == "802")) {
+    rtnValue = "Wolkig";
+    } else if (weatherClient.getCondition(0) == "Clouds" && weatherClient.getWeatherId(0) == "803") {
+    rtnValue = "Bewölkt";
+    } else if (weatherClient.getCondition(0) == "Clouds" && weatherClient.getWeatherId(0) == "804") {
+    rtnValue = "Bedeckt";
     } else if (weatherClient.getCondition(0) == "Rain") {
     rtnValue = "Regen";
     } else if (weatherClient.getCondition(0) == "Snow") {

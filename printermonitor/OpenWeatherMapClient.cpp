@@ -115,6 +115,7 @@ void OpenWeatherMapClient::updateWeather() {
     weathers[inx].temp = (const char*)root["list"][inx]["main"]["temp"];
     weathers[inx].humidity = (const char*)root["list"][inx]["main"]["humidity"];
     weathers[inx].condition = (const char*)root["list"][inx]["weather"][0]["main"];
+    weathers[inx].cloudiness = (const char*)root["list"][inx]["clouds"]["all"];
     weathers[inx].wind = (const char*)root["list"][inx]["wind"]["speed"];
     weathers[inx].weatherId = (const char*)root["list"][inx]["weather"][0]["id"];
     weathers[inx].description = (const char*)root["list"][inx]["weather"][0]["description"];
@@ -128,6 +129,7 @@ void OpenWeatherMapClient::updateWeather() {
     Serial.println("temp: " + weathers[inx].temp);
     Serial.println("humidity: " + weathers[inx].humidity);
     Serial.println("condition: " + weathers[inx].condition);
+    Serial.println("cloudiness: " + weathers[inx].cloudiness);
     Serial.println("wind: " + weathers[inx].wind);
     Serial.println("weatherId: " + weathers[inx].weatherId);
     Serial.println("description: " + weathers[inx].description);
@@ -209,6 +211,10 @@ String OpenWeatherMapClient::getCondition(int index) {
   return weathers[index].condition;
 }
 
+String OpenWeatherMapClient::getCloudiness(int index) {
+  return weathers[index].cloudiness;
+}
+
 String OpenWeatherMapClient::getWind(int index) {
   return weathers[index].wind;
 }
@@ -243,71 +249,155 @@ String OpenWeatherMapClient::getError() {
 
 String OpenWeatherMapClient::getWeatherIcon(int index)
 {
-  int id = getWeatherId(index).toInt();
+  //int id = getWeatherId(index).toInt();
+  String icon = getIcon(index);
   String W = ")";
-  switch(id)
-  {
-    case 800: W = "B"; break;
-    case 801: W = "Y"; break;
-    case 802: W = "H"; break;
-    case 803: W = "H"; break;
-    case 804: W = "Y"; break;
-    
-    case 200: W = "0"; break;
-    case 201: W = "0"; break;
-    case 202: W = "0"; break;
-    case 210: W = "0"; break;
-    case 211: W = "0"; break;
-    case 212: W = "0"; break;
-    case 221: W = "0"; break;
-    case 230: W = "0"; break;
-    case 231: W = "0"; break;
-    case 232: W = "0"; break;
-    
-    case 300: W = "R"; break;
-    case 301: W = "R"; break;
-    case 302: W = "R"; break;
-    case 310: W = "R"; break;
-    case 311: W = "R"; break;
-    case 312: W = "R"; break;
-    case 313: W = "R"; break;
-    case 314: W = "R"; break;
-    case 321: W = "R"; break;
-    
-    case 500: W = "R"; break;
-    case 501: W = "R"; break;
-    case 502: W = "R"; break;
-    case 503: W = "R"; break;
-    case 504: W = "R"; break;
-    case 511: W = "R"; break;
-    case 520: W = "R"; break;
-    case 521: W = "R"; break;
-    case 522: W = "R"; break;
-    case 531: W = "R"; break;
-    
-    case 600: W = "W"; break;
-    case 601: W = "W"; break;
-    case 602: W = "W"; break;
-    case 611: W = "W"; break;
-    case 612: W = "W"; break;
-    case 615: W = "W"; break;
-    case 616: W = "W"; break;
-    case 620: W = "W"; break;
-    case 621: W = "W"; break;
-    case 622: W = "W"; break;
-    
-    case 701: W = "M"; break;
-    case 711: W = "M"; break;
-    case 721: W = "M"; break;
-    case 731: W = "M"; break;
-    case 741: W = "M"; break;
-    case 751: W = "M"; break;
-    case 761: W = "M"; break;
-    case 762: W = "M"; break;
-    case 771: W = "M"; break;
-    case 781: W = "M"; break;
-    
-    default:break; 
+
+  // clear sky
+  // 01d
+  if (icon == "01d")   {
+    return "B";
   }
+  // 01n
+  if (icon == "01n")  {
+    W = "C";
+  }
+  // few clouds
+  // 02d
+  if (icon == "02d")  {
+    W = "H";
+  }
+  // 02n
+  if (icon == "02n")  {
+    W = "4";
+  }
+  // scattered clouds
+  // 03d
+  if (icon == "03d")  {
+    W = "N";
+  }
+  // 03n
+  if (icon == "03n")  {
+    W = "5";
+  }
+  // broken clouds
+  // 04d
+  if (icon == "04d")  {
+    W = "Y";
+  }
+  // 04n
+  if (icon == "04n")  {
+    W = "%";
+  }
+  // shower rain
+  // 09d
+  if (icon == "09d")  {
+    W = "R";
+  }
+  // 09n
+  if (icon == "09n")  {
+    W = "8";
+  }
+  // rain
+  // 10d
+  if (icon == "10d")  {
+    W = "Q";
+  }
+  // 10n
+  if (icon == "10n")  {
+    W = "7";
+  }
+  // thunderstorm
+  // 11d
+  if (icon == "11d")  {
+    W = "P";
+  }
+  // 11n
+  if (icon == "11n")  {
+    W = "6";
+  }
+  // snow
+  // 13d
+  if (icon == "13d")  {
+    W = "W";
+  }
+  // 13n
+  if (icon == "13n")  {
+    W = "#";
+  }
+  // mist
+  // 50d
+  if (icon == "50d")  {
+    W = "M";
+  }
+  // 50n
+  if (icon == "50n")  {
+    W = "M";
+  }
+
+//  switch(id)
+//  {
+//    case 800: W = "B"; break;
+//    case 801: W = "Y"; break;
+//    case 802: W = "H"; break;
+//    case 803: W = "H"; break;
+//    case 804: W = "Y"; break;
+//    
+//    case 200: W = "0"; break;
+//    case 201: W = "0"; break;
+//    case 202: W = "0"; break;
+//    case 210: W = "0"; break;
+//    case 211: W = "0"; break;
+//    case 212: W = "0"; break;
+//    case 221: W = "0"; break;
+//    case 230: W = "0"; break;
+//    case 231: W = "0"; break;
+//    case 232: W = "0"; break;
+//    
+//    case 300: W = "R"; break;
+//    case 301: W = "R"; break;
+//    case 302: W = "R"; break;
+//    case 310: W = "R"; break;
+//    case 311: W = "R"; break;
+//    case 312: W = "R"; break;
+//    case 313: W = "R"; break;
+//    case 314: W = "R"; break;
+//    case 321: W = "R"; break;
+//    
+//    case 500: W = "R"; break;
+//    case 501: W = "R"; break;
+//    case 502: W = "R"; break;
+//    case 503: W = "R"; break;
+//    case 504: W = "R"; break;
+//    case 511: W = "R"; break;
+//    case 520: W = "R"; break;
+//    case 521: W = "R"; break;
+//    case 522: W = "R"; break;
+//    case 531: W = "R"; break;
+//    
+//    case 600: W = "W"; break;
+//    case 601: W = "W"; break;
+//    case 602: W = "W"; break;
+//    case 611: W = "W"; break;
+//    case 612: W = "W"; break;
+//    case 615: W = "W"; break;
+//    case 616: W = "W"; break;
+//    case 620: W = "W"; break;
+//    case 621: W = "W"; break;
+//    case 622: W = "W"; break;
+//    
+//    case 701: W = "M"; break;
+//    case 711: W = "M"; break;
+//    case 721: W = "M"; break;
+//    case 731: W = "M"; break;
+//    case 741: W = "M"; break;
+//    case 751: W = "M"; break;
+//    case 761: W = "M"; break;
+//    case 762: W = "M"; break;
+//    case 771: W = "M"; break;
+//    case 781: W = "M"; break;
+//    
+//    default:break; 
+//  }
   return W;
 }

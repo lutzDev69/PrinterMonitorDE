@@ -45,6 +45,7 @@ private:
     String temp;
     String humidity;
     String condition;
+    String cloudiness;
     String wind;
     String weatherId;
     String description;
@@ -53,7 +54,7 @@ private:
     String error;
   } weather;
 
-  weather weathers[5];
+  weather weathers[6];
 
   String roundValue(String value);
   
@@ -77,6 +78,7 @@ public:
   String getHumidity(int index);
   String getHumidityRounded(int index);
   String getCondition(int index);
+  String getCloudiness(int index);
   String getWind(int index);
   String getWindRounded(int index);
   String getWeatherId(int index);
