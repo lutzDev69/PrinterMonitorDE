@@ -1002,7 +1002,7 @@ void drawWeather(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int
     display->setColor(BLACK);
     display->setFont(ArialMT_Plain_10);
     String displayCloudiness = weatherClient.getCloudiness(0) + "%";
-    display->drawString(95 + x, 22 + y, displayCloudiness);
+    display->drawString(95 + x, 20 + y, displayCloudiness);
   }
   
 }
@@ -1367,8 +1367,10 @@ String getTranslate() {
     rtnValue = "Klar";
     } else if (weatherClient.getCondition(0) == "Clouds" && (weatherClient.getWeatherId(0) == "801" || weatherClient.getWeatherId(0) == "802")) {
     rtnValue = "wolkig";
-    } else if (weatherClient.getCondition(0) == "Clouds" && (weatherClient.getWeatherId(0) == "803" || weatherClient.getWeatherId(0) == "804")) {
+    } else if (weatherClient.getCondition(0) == "Clouds" && weatherClient.getWeatherId(0) == "803") {
     rtnValue = "bewölkt";
+    } else if (weatherClient.getCondition(0) == "Clouds" && weatherClient.getWeatherId(0) == "804") {
+    rtnValue = "bedeckt";
     } else if (weatherClient.getCondition(0) == "Rain") {
     rtnValue = "Regen";
     } else if (weatherClient.getCondition(0) == "Snow") {
