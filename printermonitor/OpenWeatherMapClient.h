@@ -86,6 +86,6 @@ public:
   String getIcon(int index);
   boolean getCached();
   String getMyCityIDs();
-  String getWeatherIcon(int index);
+  String getWeatherIcon(int index, int hours);
   String getError();
 };

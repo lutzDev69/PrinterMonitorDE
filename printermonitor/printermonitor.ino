@@ -245,7 +245,7 @@ void setup() {
   }
   
   // You can change the transition that is used
-  // SLIDE_LEFT, SLIDE_RIGHT, SLIDE_TOP, SLIDE_DOWN
+  // SLIDE_LEFT, SLIDE_RIGHT, SLIDE_UP, SLIDE_DOWN
   ui.setFrameAnimation(SLIDE_LEFT);
   ui.setTargetFPS(30);
   ui.disableAllIndicators();
@@ -970,22 +970,34 @@ void drawWeather(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int
   display->setFont(ArialMT_Plain_16);
   display->drawString(0 + x, 24 + y, getTranslate());
   display->setFont((const uint8_t*)Meteocons_Plain_42);
-  display->drawString(86 + x, 0 + y, weatherClient.getWeatherIcon(0));
+  display->drawString(86 + x, 0 + y, weatherClient.getWeatherIcon(0, timeClient.getHours().toInt()));
   
-  if (weatherClient.getCloudiness(0).toInt() > 10 && weatherClient.getCloudiness(0).toInt() < 85 )
+  if (weatherClient.getWeatherId(0).toInt() > 800)
   {
-    display->setFont(ArialMT_Plain_10);
-    String displayCloudiness = weatherClient.getCloudiness(0) + "%";
-    display->drawString(100 + x, 22 + y, displayCloudiness);
+    if (weatherClient.getCloudiness(0).toInt() > 10 && weatherClient.getCloudiness(0).toInt() < 26 )
+    {
+      display->setFont(ArialMT_Plain_10);
+      String displayCloudiness = weatherClient.getCloudiness(0) + "%";
+      display->drawString(100 + x, 22 + y, displayCloudiness);
+    } else if (weatherClient.getCloudiness(0).toInt() > 25 && weatherClient.getCloudiness(0).toInt() < 51 )
+    {
+      display->setFont(ArialMT_Plain_10);
+      String displayCloudiness = weatherClient.getCloudiness(0) + "%";
+      display->drawString(100 + x, 15 + y, displayCloudiness);
+    } else if (weatherClient.getCloudiness(0).toInt() > 50 && weatherClient.getCloudiness(0).toInt() < 85 )
+    {
+      display->setFont(ArialMT_Plain_10);
+      String displayCloudiness = weatherClient.getCloudiness(0) + "%";
+      display->drawString(100 + x, 22 + y, displayCloudiness);
+    } else if (weatherClient.getCloudiness(0).toInt() > 84 )
+    {
+      display->setColor(BLACK);
+      display->setFont((const uint8_t*)SansSerif_bold_10);
+      String displayCloudiness = weatherClient.getCloudiness(0) + "%";
+      display->drawString(100 + x, 18 + y, displayCloudiness);
+    }
   }
-
-  if (weatherClient.getCloudiness(0).toInt() > 84 )
-  {
-    display->setColor(BLACK);
-    display->setFont((const uint8_t*)SansSerif_bold_10);
-    String displayCloudiness = weatherClient.getCloudiness(0) + "%";
-    display->drawString(100 + x, 18 + y, displayCloudiness);
-  }
+  
   
 }
 

@@ -19,8 +19,9 @@ See more at http://blog.squix.ch
 */
 // Created by http://oleddisplay.squix.ch/ Consider a donation
 // In case of problems make sure that you are using the font file with the correct version!
-// Created by http://oleddisplay.squix.ch/ Consider a donation
-// In case of problems make sure that you are using the font file with the correct version!
+
+#define FONT_LIB_V3
+
 const char SansSerif_bold_10[] PROGMEM = {
   0x0B, // Width: 11
   0x0D, // Height: 13
