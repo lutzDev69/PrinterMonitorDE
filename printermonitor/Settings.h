@@ -71,7 +71,7 @@ String PrinterModel = "Anycubic i3 Mega"; // printer model
 boolean DISPLAYWEATHER = true; // true = show weather when not printing / false = no weather
 String WeatherApiKey = "5c85ce8a775bf0006e1e667cd1576f53"; // Your API Key from http://openweathermap.org/
 // Default City Location (use http://openweathermap.org/find to find city ID)
-int CityIDs[] = { 2886242 }; //Only USE ONE for weather marquee
+int CityIDs[] = { 2846032 }; //Only USE ONE for weather marquee
 boolean IS_METRIC = true; // false = Imperial and true = Metric
 // Languages: ar, bg, ca, cz, de, el, en, fa, fi, fr, gl, hr, hu, it, ja, kr, la, lt, mk, nl, pl, pt, ro, ru, se, sk, sl, es, tr, ua, vi, zh_cn, zh_tw
 String WeatherLanguage = "de";  //Default (en) English
@@ -84,7 +84,7 @@ char* www_username = "admin";  // User account for the Web Interface
 char* www_password = "password";  // Password for the Web Interface
 
 // Date and Time
-float UtcOffset = -7; // Hour offset from GMT for your timezone
+float UtcOffset = 2; // Hour offset from GMT for your timezone
 boolean IS_24HOUR = true;     // 23:00 millitary 24 hour clock
 int minutesBetweenDataRefresh = 15;
 boolean DISPLAYCLOCK = true;   // true = Show Clock when not printing / false = turn off display when not printing
@@ -93,14 +93,14 @@ boolean DISPLAYCLOCK = true;   // true = Show Clock when not printing / false = 
 const int I2C_DISPLAY_ADDRESS = 0x3c; // I2C Address of your Display (usually 0x3c or 0x3d)
 const int SDA_PIN = D2;
 const int SCL_PIN = D5;
-boolean INVERT_DISPLAY = true; // true = pins at top | false = pins at the bottom
+boolean INVERT_DISPLAY = false; // true = pins at top | false = pins at the bottom
 #define DISPLAY_SH1106       // Uncomment this line to use the SH1106 display -- SSD1306 is used by default and is most common
 
 // LED Settings
 const int externalLight = LED_BUILTIN; // Set to unused pin, like D1, to disable use of built-in LED (LED_BUILTIN)
 
 // PSU Control
-boolean HAS_PSU = false; // Set to true if https://github.com/kantlivelong/OctoPrint-PSUControl/ in use
+boolean HAS_PSU = true; // Set to true if https://github.com/kantlivelong/OctoPrint-PSUControl/ in use
 
 // OTA Updates
 boolean ENABLE_OTA = true;     // this will allow you to load firmware to the device over WiFi (see OTA for ESP8266)

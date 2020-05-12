@@ -347,7 +347,26 @@ String OctoPrintClient::getProgressPrintTimeLeft() {
 }
 
 String OctoPrintClient::getState() {
-  return printerData.state;
+  String printerState = "";
+
+  if(printerData.state == "Printing")
+  {
+    printerState = "Druckt";
+  }
+
+  if(printerData.state == "Operational")
+  {
+    printerState = "Operational";
+  }
+
+  if(printerState != "")
+  {
+    return printerState;
+  } else 
+  {
+    return printerData.state;
+  }
+  
 }
 
 boolean OctoPrintClient::isPrinting() {

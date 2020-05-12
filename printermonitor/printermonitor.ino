@@ -735,7 +735,7 @@ void displayPrinterStatus() {
   }
   
   if (printerClient.isPrinting()) {
-    html += "File: " + printerClient.getFileName() + "<br>";
+    html += "Datei: " + printerClient.getFileName() + "<br>";
     float fileSize = printerClient.getFileSize().toFloat();
     if (fileSize > 0) {
       fileSize = fileSize / 1024;
@@ -884,9 +884,10 @@ void drawScreen1(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int
   String bed = printerClient.getValueRounded(printerClient.getTempBedActual());
   String tool = printerClient.getValueRounded(printerClient.getTempToolActual());
   display->setTextAlignment(TEXT_ALIGN_CENTER);
-  display->setFont(ArialMT_Plain_10);
+  display->setFont(ArialMT_Plain_16);
   if (bed != "0") {
-    display->drawString(64 + x, 0 + y, "Bett - Noozle Temp");
+    display->drawString(20 + x, 0 + y, "Bett");
+    display->drawString(92 + x, 0 + y, "Noozle");
   } else {
     display->drawString(64 + x, 0 + y, "Noozle Temp");
   }
@@ -906,7 +907,7 @@ void drawScreen2(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int
   display->setTextAlignment(TEXT_ALIGN_CENTER);
   display->setFont(ArialMT_Plain_16);
 
-  display->drawString(64 + x, 0 + y, "Druckende in ca.:");
+  display->drawString(64 + x, 0 + y, "Druckende in ca.");
   //display->setTextAlignment(TEXT_ALIGN_LEFT);
   display->setFont(ArialMT_Plain_24);
   int val = printerClient.getProgressPrintTimeLeft().toInt();
