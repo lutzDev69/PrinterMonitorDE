@@ -46,8 +46,6 @@ SOFTWARE.
 * Basic Authentication to protect your settings
 * Ability to update firmware through web interface from a compiled binary
 * Can query the Octoprint [PSU Control plugin](https://plugins.octoprint.org/plugins/psucontrol/) to enter clock or blank mode when PSU is off
-* Video: https://youtu.be/niRv9SCgAPk
-* Detailed build video by Chris Riley: https://youtu.be/Rm-l1FSuJpI
 
 ## Required Parts:
 * [Wemos D1 Mini](https://amzn.to/2zua6EN) or [Wemos D1 Mini V3](https://amzn.to/2WM0VHO)
