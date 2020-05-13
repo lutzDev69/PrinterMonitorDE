@@ -50,7 +50,7 @@ SOFTWARE.
 * Detailed build video by Chris Riley: https://youtu.be/Rm-l1FSuJpI
 
 ## Required Parts:
-<a href="https://amzn.to/2zua6EN" target="_blank">* Wemos D1 Mini</a> or [Wemos D1 Mini V3](https://amzn.to/2WM0VHO)
+* [Wemos D1 Mini](https://amzn.to/2zua6EN) or [Wemos D1 Mini V3](https://amzn.to/2WM0VHO)
 * [0.96" OLED I2C 128x64 Display (12864) SSD1306](https://amzn.to/2RGIjJy)
 * [(optional) 1.3" I2C OLED Display](https://amzn.to/2WpAmcm) (must uncomment #define DISPLAY_SH1106 in the Settings.h to use the 1.3" SSH1106 display)  
 
