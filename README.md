@@ -27,6 +27,7 @@ SOFTWARE.
 # Printer Monitor DE (OctoPrint 3D Printer Monitor)
 
 ## Features:
+* All display and web output translated to German
 * Displays the print status from OctoPrint Server
 * Estimated time remaining
 * Time Printing
@@ -43,17 +44,17 @@ SOFTWARE.
 * Fully configurable from the web interface (not required to update Settings.h)
 * Supports OTA (loading firmware over WiFi connection on same LAN)
 * Basic Authentication to protect your settings
-* Version 2.2 added the ability to update firmware through web interface from a compiled binary
+* Ability to update firmware through web interface from a compiled binary
 * Can query the Octoprint [PSU Control plugin](https://plugins.octoprint.org/plugins/psucontrol/) to enter clock or blank mode when PSU is off
 * Video: https://youtu.be/niRv9SCgAPk
 * Detailed build video by Chris Riley: https://youtu.be/Rm-l1FSuJpI
 
 ## Required Parts:
-* Wemos D1 Mini: https://amzn.to/2ImqD1n
-* 0.96" OLED I2C 128x64 Display (12864) SSD1306:  https://amzn.to/2InSNF0
-* (optional) 1.3" I2C OLED Display: https://amzn.to/2IP0gRU (must uncomment #define DISPLAY_SH1106 in the Settings.h to use the 1.3" SSH1106 display)  
+* Wemos D1 Mini: https://amzn.to/2zua6EN or Wemos D1 Mini V3 https://amzn.to/2WM0VHO
+* 0.96" OLED I2C 128x64 Display (12864) SSD1306:  https://amzn.to/2RGIjJy
+* (optional) 1.3" I2C OLED Display: https://amzn.to/2WpAmcm (must uncomment #define DISPLAY_SH1106 in the Settings.h to use the 1.3" SSH1106 display)  
 
-Note: Using the links provided here help to support these types of projects. Thank you for the support.  
+Note: The links above are not affiliate links.
 
 ## Wiring for the Wemos D1 Mini to the I2C SSD1306 OLED
 SDA -> D2  
