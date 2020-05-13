@@ -3,7 +3,7 @@ Clone of Printer-Monitor by <a href="https://github.com/Qrome" target="_blank">Q
 
 /* The MIT License (MIT)
 
-Copyright (c) 2018 David Payne
+Copyright (c) 2018 Lutz Hasberg
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -68,8 +68,8 @@ GND -> GND-
 https://www.thingiverse.com/thing:2884823 -- for the 0.96" OLED Display  
 https://www.thingiverse.com/thing:2934049 -- for the 1.3" OLED Display
 
-## Upgrading from version 2.2 or Higher
-Version 2.2 introduced the ability to upgrade pre-compiled firmware from a binary file.  In version 2.3 and on you should find binary files that can be uploaded to your printer monitor via the web interface.  From the main menu in the web interface select "Firmware Update" and follow the prompts.
+## Upgrading with OTA
+This build provides the ability to upgrade pre-compiled firmware from a binary file.  You should find binary files that can be uploaded to your printer monitor via the web interface.  From the main menu in the web interface select "Firmware Update" and follow the prompts.
 * **printermonitor.ino.d1_mini_SSD1306.bin** - compiled for Wemos D1 Mini for the smaller 0.96" SSD1306 OLED (default)
 * **printermonitor.ino.d1_mini_SH1106.bin** - compiled for Wemos D1 Mini for the larger 1.3" SH1106 OLED
 
@@ -92,7 +92,7 @@ ArduinoOTA.h  --> Arduino OTA Library
 "SSD1306Wire.h" --> https://github.com/ThingPulse/esp8266-oled-ssd1306  
 "OLEDDisplayUi.h"  
 
-Note Printer-Monitor version 2.5 and later include ArduinoJson (version 5.13.1).   
+Note Printer-Monitor version 1.0 and later include ArduinoJson (version 5.13.1).   
 
 ## Initial Configuration
 All settings may be managed from the Web Interface, however, you may update the **Settings.h** file manually -- but it is not required.  There is also an option to display current weather when the print is off-line.  
@@ -117,10 +117,7 @@ used to open a browser to the Web Interface.  **Everything** can be configured t
 
 
 ## Contributors
-David Payne -- Principal developer and architect  
-Daniel Eichhorn -- Author of the TimeClient class and OLEDDisplayUi  
-Florian Schütte -- added flip display to web interface  
-Owen Carter -- Added psu control setting (v2.4) 
+Lutz Hasberg - Developer
 
 Contributing to this software is warmly welcomed. You can do this basically by
 forking from master, committing modifications and then making a pulling requests to be reviewed (follow the links above
