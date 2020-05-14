@@ -122,6 +122,13 @@ forking from master, committing modifications and then making a pulling requests
 for operating guide).  Detailed comments are encouraged.  Adding change log and your contact into file header is encouraged.
 Thanks for your contribution.
 
+## Printing
+
 ![Printer Monitor Temps](/images/temperatures.jpg)  
 ![Printer Monitor Time Remaining](/images/time_remaining.jpg)  
 ![Printer Monitor Printing Time](/images/printing_time.jpg)
+
+## Clock and Weather
+
+![Printer Monitor DE Clock](/images/clock.jpg)
+![Printer Monitor DE Weather](/images/weather.jpg)
