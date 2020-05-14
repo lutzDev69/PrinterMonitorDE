@@ -68,8 +68,8 @@ https://www.thingiverse.com/thing:2934049 -- for the 1.3" OLED Display
 
 ## Upgrading with OTA
 This build provides the ability to upgrade pre-compiled firmware from a binary file.  You should find binary files that can be uploaded to your printer monitor via the web interface.  From the main menu in the web interface select "Firmware Update" and follow the prompts.
-* **printermonitor.ino.d1_mini_SSD1306.bin** - compiled for Wemos D1 Mini for the smaller 0.96" SSD1306 OLED (default)
-* **printermonitor.ino.d1_mini_SH1106.bin** - compiled for Wemos D1 Mini for the larger 1.3" SH1106 OLED
+* **printermonitorde_SSD1306_d1_mini.bin** - compiled for Wemos D1 Mini for the smaller 0.96" SSD1306 OLED (default)
+* **printermonitorde_SH1106_d1_mini.bin** - compiled for Wemos D1 Mini for the larger 1.3" SH1106 OLED
 
 ## Compiling and Loading to Wemos D1 Mini
 It is recommended to use Arduino IDE.  You will need to configure Arduino IDE to work with the Wemos board and USB port and installed the required USB drivers etc.  
@@ -124,9 +124,9 @@ Thanks for your contribution.
 
 ## Printing
 
-![Printer Monitor Temps](/images/temperatures.jpg)  
-![Printer Monitor Time Remaining](/images/time_remaining.jpg)  
-![Printer Monitor Printing Time](/images/printing_time.jpg)
+![Printer Monitor DE Temps](/images/temperatures.jpg)  
+![Printer Monitor DE Time Remaining](/images/time_remaining.jpg)  
+![Printer Monitor DE Printing Time](/images/printing_time.jpg)
 
 ## Clock and Weather
 
