@@ -970,6 +970,7 @@ void drawWeather(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int
 
   display->setFont(ArialMT_Plain_16);
   display->drawString(0 + x, 24 + y, getTranslate());
+  //display->setFont((const uint8_t*)Meteocons_Plain_42);
   display->setFont((const uint8_t*)Meteocons_Plain_42);
   display->drawString(86 + x, 0 + y, weatherClient.getWeatherIcon(0, timeClient.getHours().toInt()));
   

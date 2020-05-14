@@ -335,7 +335,7 @@ String OpenWeatherMapClient::getWeatherIcon(int index, int hours)
 //    W = "M";
 //  }
 
-if (hours < 19)
+if (hours < 20 && hours > 6)
 {
   switch(id)
   {
@@ -401,7 +401,7 @@ if (hours < 19)
     
     default:break; 
   }
-} else if (hours > 19)
+} else if (hours > 19 && hours < 6)
 {
   switch(id)
   {
