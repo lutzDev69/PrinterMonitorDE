@@ -3,7 +3,7 @@ Clone of Printer-Monitor by [Qrome](https://github.com/Qrome/printer-monitor)
 
 /* The MIT License (MIT)
 
-Copyright (c) 2018 Lutz Hasberg
+Copyright (c) 2020 Lutz Hasberg
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
