@@ -401,7 +401,7 @@ if (hours < 20 && hours > 6)
     
     default:break; 
   }
-} else if (hours > 19 && hours < 6)
+} else if (hours > 19 || hours < 6)
 {
   switch(id)
   {
