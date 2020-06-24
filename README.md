@@ -1,5 +1,5 @@
 # PrinterMonitorDE
-Clone of Printer-Monitor by [Qrome](https://github.com/Qrome/printer-monitor)
+Fork of Printer-Monitor by [Qrome](https://github.com/Qrome/printer-monitor)
 
 /* The MIT License (MIT)
 
